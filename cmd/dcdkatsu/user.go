@@ -17,6 +17,7 @@ func user(c *cli.Context) error {
 	idol, err := dcdkatsu.FetchIdol(idolID)
 	if err != nil {
 		fmt.Println(err)
+		return err
 	}
 	fmt.Printf("%+v\n", idol)
 
