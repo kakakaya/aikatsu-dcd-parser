@@ -15,8 +15,9 @@ type Idol struct {
 	URL string
 
 	// Basic Info
-	Name      string
-	AvatarURL string
+	Name             string
+	AvatarURL        string
+	LastPlayLocation string
 
 	// Levels for each type
 	CuteLevel int
@@ -24,9 +25,11 @@ type Idol struct {
 	SexyLevel int
 	PopLevel  int
 
-	FanCount int
-
-	LastPlayLocation string
+	// Misc
+	IdolRank         int
+	IdolRankLabel    string
+	FanCount         int
+	PlayedCardsCount int
 
 	// TODO: Check DailyHighScore type; is it int?
 	// If there's no rank, set to zero.
@@ -69,12 +72,16 @@ func FetchIdol(id string) (Idol, error) {
 	idol.LastPlayLocation = strings.Trim(doc.Find("#container > article > div > section > dl.m_playdate > dd").Text(), " \n")
 
 	// Convert number images to number functions
-	fanNumberImagesConverter := numberImagesConverterFactory(&idol.FanCount)
-	doc.Find("#container > article > div > section > dl.m_totalfun > dd > span > img").Each(fanNumberImagesConverter)
+	doc.Find("#container > article > div > section > dl.m_rank > dd.m_rank_count > img").Each(numberImagesConverterFactory(&idol.IdolRank))
+	idol.IdolRankLabel = doc.Find("#container > article > div > section > dl.m_rank > dd.m_rank_catch > span").Text()
+	doc.Find("#container > article > div > section > dl.m_totalfun > dd > span > img").Each(numberImagesConverterFactory(&idol.FanCount))
+	doc.Find("#container > article > div > section > dl.m_card > dd > span > img").Each(numberImagesConverterFactory(&idol.PlayedCardsCount))
 
 	return idol, nil
 }
 
+// numberImagesConverterFactory creates function that
+// converts image element to number and sets value for given counter.
 func numberImagesConverterFactory(counter *int) func(int, *goquery.Selection) {
 	return func(i int, s *goquery.Selection) {
 		src, _ := s.Attr("src")
