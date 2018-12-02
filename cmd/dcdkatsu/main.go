@@ -33,11 +33,9 @@ func main() {
 			Aliases:  []string{"u"},
 			Category: loginNotRequiredCategoryLabel,
 			Usage:    "add a task to the list",
-			Action: func(c *cli.Context) error {
-				fmt.Println("added task: ", c.Args().First())
-				return nil
-			},
+			Action:   user,
 		},
+
 		{
 			Name:     "complete",
 			Aliases:  []string{"c"},
