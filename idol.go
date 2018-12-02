@@ -73,7 +73,7 @@ func FetchIdol(id string) (Idol, error) {
 
 	// Convert number images to number functions
 	doc.Find("#container > article > div > section > dl.m_rank > dd.m_rank_count > img").Each(numberImagesConverterFactory(&idol.IdolRank))
-	idol.IdolRankLabel = doc.Find("#container > article > div > section > dl.m_rank > dd.m_rank_catch > span").Text()
+	idol.IdolRankLabel = strings.Trim(doc.Find("#container > article > div > section > dl.m_rank > dd.m_rank_catch > span").Text(), " \n")
 	doc.Find("#container > article > div > section > dl.m_totalfun > dd > span > img").Each(numberImagesConverterFactory(&idol.FanCount))
 	doc.Find("#container > article > div > section > dl.m_card > dd > span > img").Each(numberImagesConverterFactory(&idol.PlayedCardsCount))
 
