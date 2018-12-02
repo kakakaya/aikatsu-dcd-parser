@@ -30,15 +30,14 @@ func main() {
 	app.Commands = []cli.Command{
 		{
 			Name:     "user",
-			Aliases:  []string{"u"},
+			Aliases:  []string{"u", "mydata"},
 			Category: loginNotRequiredCategoryLabel,
 			Usage:    "add a task to the list",
 			Action:   user,
 		},
-
 		{
-			Name:     "complete",
-			Aliases:  []string{"c"},
+			Name:     "digital_binder",
+			Aliases:  []string{"dbe"},
 			Category: loginNotRequiredCategoryLabel,
 			Usage:    "complete a task on the list",
 			Action: func(c *cli.Context) error {
@@ -47,27 +46,53 @@ func main() {
 			},
 		},
 		{
-			Name:     "mypage",
-			Aliases:  []string{"t"},
+			Name: "friends",
+			// Aliases:  []string{""},
 			Category: loginRequiredCategoryLabel,
-			Usage:    "options for task templates",
-			Subcommands: []cli.Command{
-				{
-					Name:  "add",
-					Usage: "add a new template",
-					Action: func(c *cli.Context) error {
-						fmt.Println("new task template: ", c.Args().First())
-						return nil
-					},
-				},
-				{
-					Name:  "remove",
-					Usage: "remove an existing template",
-					Action: func(c *cli.Context) error {
-						fmt.Println("removed task template: ", c.Args().First())
-						return nil
-					},
-				},
+			Usage:    "complete a task on the list",
+			Action: func(c *cli.Context) error {
+				fmt.Println("completed task: ", c.Args().First())
+				return nil
+			},
+		},
+		{
+			Name: "friends",
+			// Aliases:  []string{""},
+			Category: loginRequiredCategoryLabel,
+			Usage:    "complete a task on the list",
+			Action: func(c *cli.Context) error {
+				fmt.Println("completed task: ", c.Args().First())
+				return nil
+			},
+		},
+		{
+			Name: "friends",
+			// Aliases:  []string{""},
+			Category: loginRequiredCategoryLabel,
+			Usage:    "complete a task on the list",
+			Action: func(c *cli.Context) error {
+				fmt.Println("completed task: ", c.Args().First())
+				return nil
+			},
+		},
+		{
+			Name: "friends",
+			// Aliases:  []string{""},
+			Category: loginRequiredCategoryLabel,
+			Usage:    "complete a task on the list",
+			Action: func(c *cli.Context) error {
+				fmt.Println("completed task: ", c.Args().First())
+				return nil
+			},
+		},
+		{
+			Name: "friends",
+			// Aliases:  []string{""},
+			Category: loginRequiredCategoryLabel,
+			Usage:    "complete a task on the list",
+			Action: func(c *cli.Context) error {
+				fmt.Println("completed task: ", c.Args().First())
+				return nil
 			},
 		},
 	}
