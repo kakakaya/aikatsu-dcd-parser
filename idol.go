@@ -33,7 +33,7 @@ type Idol struct {
 	FanCount         int
 	PlayedCardsCount int
 
-	// TODO: Check DailyHighScore type; is it int?
+	// Not implemented yet
 	// If there's no rank, set to zero.
 	RankingHighscoreSolo     int
 	RankingHighscoresFriends int
@@ -103,6 +103,11 @@ func FetchIdol(id string) (Idol, error) {
 	idol.IdolRankLabel = strings.Trim(doc.Find("#container > article > div > section > dl.m_rank > dd.m_rank_catch > span").Text(), " \n")
 	doc.Find("#container > article > div > section > dl.m_totalfun > dd > span > img").Each(numberImagesConverterFactory(&idol.FanCount))
 	doc.Find("#container > article > div > section > dl.m_card > dd > span > img").Each(numberImagesConverterFactory(&idol.PlayedCardsCount))
+
+	// // Not works
+	// doc.Find("#container > article > div > section > dl.m_ranking > dd > dl.m_ranking_highscore > dd.m_ranking_count > span").Each(numberImagesConverterFactory(&idol.RankingHighscoreSolo))
+	// doc.Find("#container > article > div > section > dl.m_ranking > dd > dl.m_ranking_highscorefriends > dd.m_ranking_count > span").Each(numberImagesConverterFactory(&idol.RankingHighscoresFriends))
+	// doc.Find("#container > article > div > section > dl.m_ranking > dd > dl.m_ranking_totalfan > dd.m_ranking_count > span").Each(numberImagesConverterFactory(&idol.RankingTotalfan))
 
 	return idol, nil
 }
