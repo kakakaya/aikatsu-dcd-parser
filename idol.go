@@ -28,10 +28,10 @@ type Idol struct {
 	PopLevel  int `json:"pop_level"`
 
 	// Misc
-	IdolRank         int `json:"idol_rank"`
+	IdolRank         int    `json:"idol_rank"`
 	IdolRankLabel    string `json:"idol_rank_level"`
-	FanCount         int `json:"fan_count"`
-	PlayedCardsCount int `json:"played_cards_count"`
+	FanCount         int    `json:"fan_count"`
+	PlayedCardsCount int    `json:"played_cards_count"`
 
 	// // Not implemented yet
 	// // If there's no rank, set to zero.

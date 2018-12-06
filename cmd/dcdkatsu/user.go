@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 
 	"github.com/kakakaya/aikatsu-dcd-parser"
 	"github.com/urfave/cli"
