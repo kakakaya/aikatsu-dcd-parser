@@ -72,6 +72,13 @@ func FetchIdol(id string) (Idol, error) {
 	idol.LastPlayLocation = strings.Trim(doc.Find("#container > article > div > section > dl.m_playdate > dd").Text(), " \n")
 
 	// Convert number images to number functions
+	// Set each levels
+	doc.Find("#container > article > div > section > dl.m_status > dd.m_status_cute > span > img").Each(numberImagesConverterFactory(&idol.CuteLevel))
+	doc.Find("#container > article > div > section > dl.m_status > dd.m_status_cool > span > img").Each(numberImagesConverterFactory(&idol.CoolLevel))
+	doc.Find("#container > article > div > section > dl.m_status > dd.m_status_sexy > span > img").Each(numberImagesConverterFactory(&idol.SexyLevel))
+	doc.Find("#container > article > div > section > dl.m_status > dd.m_status_pop > span > img").Each(numberImagesConverterFactory(&idol.PopLevel))
+
+	// Set misc
 	doc.Find("#container > article > div > section > dl.m_rank > dd.m_rank_count > img").Each(numberImagesConverterFactory(&idol.IdolRank))
 	idol.IdolRankLabel = strings.Trim(doc.Find("#container > article > div > section > dl.m_rank > dd.m_rank_catch > span").Text(), " \n")
 	doc.Find("#container > article > div > section > dl.m_totalfun > dd > span > img").Each(numberImagesConverterFactory(&idol.FanCount))
