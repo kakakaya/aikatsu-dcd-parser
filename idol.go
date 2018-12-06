@@ -13,34 +13,34 @@ import (
 
 // Idol hold information for Aikatsu! idol.
 type Idol struct {
-	ID  string
-	URL string
+	ID  string `json:"id"`
+	URL string `json:"url"`
 
 	// Basic Info
-	Name             string
-	AvatarURL        string
-	LastPlayLocation string
+	Name             string `json:"name"`
+	AvatarURL        string `json:"avatar_url"`
+	LastPlayLocation string `json:"last_play_location"`
 
 	// Levels for each type
-	CuteLevel int
-	CoolLevel int
-	SexyLevel int
-	PopLevel  int
+	CuteLevel int `json:"cute_level"`
+	CoolLevel int `json:"cool_level"`
+	SexyLevel int `json:"sexy_level"`
+	PopLevel  int `json:"pop_level"`
 
 	// Misc
-	IdolRank         int
-	IdolRankLabel    string
-	FanCount         int
-	PlayedCardsCount int
+	IdolRank         int `json:"idol_rank"`
+	IdolRankLabel    string `json:"idol_rank_level"`
+	FanCount         int `json:"fan_count"`
+	PlayedCardsCount int `json:"played_cards_count"`
 
-	// Not implemented yet
-	// If there's no rank, set to zero.
-	RankingHighscoreSolo     int
-	RankingHighscoresFriends int
-	RankingTotalfan          int
+	// // Not implemented yet
+	// // If there's no rank, set to zero.
+	// RankingHighscoreSolo     int `json:""`
+	// RankingHighscoresFriends int `json:""`
+	// RankingTotalfan          int `json:""`
 
 	// DataGetDate is not , but upstream api called time
-	DataGetDate time.Time
+	DataGetDate time.Time `json:"data_get_date"`
 }
 
 // FetchIdol returns parsed Idol data.
