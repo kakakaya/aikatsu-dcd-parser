@@ -3,8 +3,10 @@ package dcdkatsu
 import (
 	"fmt"
 	"net/http"
+	"regexp"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -33,8 +35,12 @@ type Idol struct {
 
 	// TODO: Check DailyHighScore type; is it int?
 	// If there's no rank, set to zero.
-	DailyHighScoreSolo    int
-	DailyHighScoreFriends int
+	RankingHighscoreSolo     int
+	RankingHighscoresFriends int
+	RankingTotalfan          int
+
+	// DataGetDate is not , but upstream api called time
+	DataGetDate time.Time
 }
 
 // FetchIdol returns parsed Idol data.
@@ -67,6 +73,20 @@ func FetchIdol(id string) (Idol, error) {
 		return idol, fmt.Errorf("Couldn't get AvatarURL")
 	}
 	idol.AvatarURL = fmt.Sprintf("http://mypage.aikatsu.com%s", au)
+
+	// Set DataGetDate
+	re := regexp.MustCompile("データ取得日：(.*)$")
+	dgd := re.ReplaceAllString(
+		strings.Trim(doc.Find("#container > div.l_header > header > div.m_playdate > p").Text(), " \n"),
+		"$1",
+	)
+
+	loc, _ := time.LoadLocation("Asia/Tokyo")
+	idol.DataGetDate, err = time.ParseInLocation("2006年01月02日 03時04分", dgd, loc)
+	if err != nil {
+		fmt.Println(err)
+	}
+	// "2016年01月02日 03時04分"
 
 	// Set LastPlayLocation
 	idol.LastPlayLocation = strings.Trim(doc.Find("#container > article > div > section > dl.m_playdate > dd").Text(), " \n")
