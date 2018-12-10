@@ -7,8 +7,8 @@ builds:
       ./cmd/dcdkatsu
     binary: dcdkatsu
     goos:
-      # - windows
-      # - darwin
+      - windows
+      - darwin
       - linux
       - freebsd
     goarch:
