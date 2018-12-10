@@ -4,7 +4,7 @@ builds:
     env:
       - CGO_ENABLED=0
     main:
-      ./cmd/dcdkatsu/main.go
+      ./cmd/dcdkatsu
     binary: dcdkatsu
     goos:
       # - windows
