@@ -16,4 +16,7 @@ type Card struct {
 	Owner   Idol   `json:"-"`
 	OwnerID string `json:"owner_id"`
 	Owned   bool   `json:"owned"`
+
+	SeriesID int `json:"series_id"`
+	URL string `json:"url"`
 }
