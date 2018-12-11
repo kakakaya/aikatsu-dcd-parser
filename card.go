@@ -17,6 +17,6 @@ type Card struct {
 	OwnerID string `json:"owner_id"`
 	Owned   bool   `json:"owned"`
 
-	SeriesID int `json:"series_id"`
-	URL string `json:"url"`
+	SeriesID int    `json:"series_id"`
+	URL      string `json:"url"`
 }
