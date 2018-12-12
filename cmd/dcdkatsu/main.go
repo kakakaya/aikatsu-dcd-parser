@@ -32,18 +32,15 @@ func main() {
 			Name:     "user",
 			Aliases:  []string{"u", "mydata"},
 			Category: loginNotRequiredCategoryLabel,
-			Usage:    "add a task to the list",
+			Usage:    "Fetch Idol data and print as JSON",
 			Action:   user,
 		},
 		{
 			Name:     "digital_binder",
 			Aliases:  []string{"binder", "db"},
 			Category: loginNotRequiredCategoryLabel,
-			Usage:    "complete a task on the list",
-			Action: func(c *cli.Context) error {
-				fmt.Println("completed task: ", c.Args().First())
-				return nil
-			},
+			Usage:    "Fetch Digital Binder data and print as JSON",
+			Action: binder,
 		},
 		{
 			Name: "friends",
