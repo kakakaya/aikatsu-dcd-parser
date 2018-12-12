@@ -19,4 +19,5 @@ type Card struct {
 
 	SeriesID int    `json:"series_id"`
 	URL      string `json:"url"`
+	ImageURL string `json:"image_url"`
 }
