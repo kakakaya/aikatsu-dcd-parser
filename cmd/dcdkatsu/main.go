@@ -37,7 +37,7 @@ func main() {
 		},
 		{
 			Name:     "digital_binder",
-			Aliases:  []string{"dbe"},
+			Aliases:  []string{"binder", "db"},
 			Category: loginNotRequiredCategoryLabel,
 			Usage:    "complete a task on the list",
 			Action: func(c *cli.Context) error {
