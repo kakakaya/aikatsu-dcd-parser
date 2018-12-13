@@ -5,9 +5,15 @@
 Fetch and parse Aikatsu! DCD mypage data.
 
 # dcdkatsu command usage
-See help.
 
-`dcdkatsu -h`
+## User
+`dcdkatsu user <User ID>`
+
+## Digital Binder
+`dcdkatsu digital_binder <User ID> <Series ID>`
+
+## Card
+`dcdkatsu card <Card URL>`
 
 # Documentatino
 See GoDoc.
