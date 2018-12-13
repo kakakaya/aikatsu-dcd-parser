@@ -76,8 +76,7 @@ func parseAndSetCard(db *DigitalBinder) func(i int, s *goquery.Selection) {
 		path, _ := s.Find("a").Attr("onclick")
 		card.URL = re.ReplaceAllString(path, "http://mypage.aikatsu.com$1")
 
-		src := s.Find("a > div.m_dress_card_img > img").First().AttrOr("src", "")
-		card.ImageURL = fmt.Sprintf("http://mypage.aikatsu.com%s", src)
+		card.ImageURL = fmt.Sprintf("http://mypage.aikatsu.com%s", s.Find("a > div.m_dress_card_img > img").First().AttrOr("src", ""))
 
 		// Set owned
 		if s.Find("a > div.m_dress_card_img > img.is_medal").Length() == 0 {
