@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"net/http"
 	"regexp"
-	// 	"strconv"
-	"github.com/PuerkitoBio/goquery"
 	"strings"
 	"time"
+
+	"github.com/PuerkitoBio/goquery"
 )
 
 // DigitalBinder holds acquisition status of series of cards.
@@ -76,8 +76,8 @@ func parseAndSetCard(db *DigitalBinder) func(i int, s *goquery.Selection) {
 		path, _ := s.Find("a").Attr("onclick")
 		card.URL = re.ReplaceAllString(path, "http://mypage.aikatsu.com$1")
 
-		src, _ := s.Find("a > div.m_dress_card_img > img").First().Attr("src")
-		card.ImageURL = fmt.Sprintf("http://mypage.aikatsu.com/%s", src)
+		src := s.Find("a > div.m_dress_card_img > img").First().AttrOr("src", "")
+		card.ImageURL = fmt.Sprintf("http://mypage.aikatsu.com%s", src)
 
 		// Set owned
 		if s.Find("a > div.m_dress_card_img > img.is_medal").Length() == 0 {
