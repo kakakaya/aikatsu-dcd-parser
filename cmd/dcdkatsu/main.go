@@ -40,14 +40,14 @@ func main() {
 			Aliases:  []string{"binder", "db"},
 			Category: loginNotRequiredCategoryLabel,
 			Usage:    "Fetch Digital Binder data and print as JSON",
-			Action: binder,
+			Action:   binder,
 		},
 		{
 			Name:     "card",
 			Aliases:  []string{"c"},
 			Category: loginNotRequiredCategoryLabel,
 			Usage:    "Fetch Card data and print as JSON",
-			Action: card,
+			Action:   card,
 		},
 		{
 			Name: "friends",
