@@ -43,7 +43,6 @@ func FetchCard(url string) (Card, error) {
 	if string(url[len(url)-1]) == "/" {
 		url = url[0 : len(url)-1]
 	}
-	fmt.Println(url)
 	card := Card{
 		URL: url,
 	}
@@ -71,7 +70,6 @@ func FetchCard(url string) (Card, error) {
 	if len(header) != 3 {
 		return card, fmt.Errorf("Card parsing error: %v", header)
 	}
-	fmt.Println(header)
 	card.Code = header[0]
 	card.Name = header[2]
 
