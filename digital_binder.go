@@ -27,6 +27,9 @@ type DigitalBinder struct {
 
 // FetchDigitalBinder returns parsed DigitalBinder data.
 // This data will be fetched from http://mypage.aikatsu.com/mypages/digital_binders/<ownerID>/<seriesID> .
+//
+// Note: Card's detail won't be fetchedf, Because each of them requires one HTTP request per card.
+// Use Card.Detail() for more information.
 func FetchDigitalBinder(ownerID string, seriesID int) (DigitalBinder, error) {
 	db := DigitalBinder{
 		OwnerID:  ownerID,
@@ -69,11 +72,12 @@ func parseAndSetCard(db *DigitalBinder) func(i int, s *goquery.Selection) {
 			SeriesID: db.SeriesID,
 		}
 
-		re := regexp.MustCompile("'(.*)'")
+		re := regexp.MustCompile(`^.*?\('(.*?)'\).*?$`)
 		path, _ := s.Find("a").Attr("onclick")
-		card.URL = re.ReplaceAllString(path, "http://mypage.aikatsu.com/$1")
+		card.URL = re.ReplaceAllString(path, "http://mypage.aikatsu.com$1")
 
-		s.Find("a > div.m_dress_card_img > img").Children().First()
+		src, _ := s.Find("a > div.m_dress_card_img > img").First().Attr("src")
+		card.ImageURL = fmt.Sprintf("http://mypage.aikatsu.com/%s", src)
 
 		// Set owned
 		if s.Find("a > div.m_dress_card_img > img.is_medal").Length() == 0 {
