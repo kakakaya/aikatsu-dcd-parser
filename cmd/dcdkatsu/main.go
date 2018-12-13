@@ -46,47 +46,7 @@ func main() {
 			Name: "friends",
 			// Aliases:  []string{""},
 			Category: loginRequiredCategoryLabel,
-			Usage:    "complete a task on the list",
-			Action: func(c *cli.Context) error {
-				fmt.Println("completed task: ", c.Args().First())
-				return nil
-			},
-		},
-		{
-			Name: "friends",
-			// Aliases:  []string{""},
-			Category: loginRequiredCategoryLabel,
-			Usage:    "complete a task on the list",
-			Action: func(c *cli.Context) error {
-				fmt.Println("completed task: ", c.Args().First())
-				return nil
-			},
-		},
-		{
-			Name: "friends",
-			// Aliases:  []string{""},
-			Category: loginRequiredCategoryLabel,
-			Usage:    "complete a task on the list",
-			Action: func(c *cli.Context) error {
-				fmt.Println("completed task: ", c.Args().First())
-				return nil
-			},
-		},
-		{
-			Name: "friends",
-			// Aliases:  []string{""},
-			Category: loginRequiredCategoryLabel,
-			Usage:    "complete a task on the list",
-			Action: func(c *cli.Context) error {
-				fmt.Println("completed task: ", c.Args().First())
-				return nil
-			},
-		},
-		{
-			Name: "friends",
-			// Aliases:  []string{""},
-			Category: loginRequiredCategoryLabel,
-			Usage:    "complete a task on the list",
+			Usage:    "Nothing implemented yet. Sorry!",
 			Action: func(c *cli.Context) error {
 				fmt.Println("completed task: ", c.Args().First())
 				return nil
