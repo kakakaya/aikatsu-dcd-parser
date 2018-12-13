@@ -29,7 +29,7 @@ type DigitalBinder struct {
 // This data will be fetched from http://mypage.aikatsu.com/mypages/digital_binders/<ownerID>/<seriesID> .
 func FetchDigitalBinder(ownerID string, seriesID int) (DigitalBinder, error) {
 	db := DigitalBinder{
-		OwnerID: ownerID,
+		OwnerID:  ownerID,
 		SeriesID: seriesID,
 		URL:      fmt.Sprintf("http://mypage.aikatsu.com/mypages/digital_binders/%s/%d", ownerID, seriesID),
 	}
@@ -52,13 +52,7 @@ func FetchDigitalBinder(ownerID string, seriesID int) (DigitalBinder, error) {
 	doc.Find("#container > article > div > section > div.l_box > div.m_inner > ul.m_dress > li").Each(parseAndSetCard(&db))
 
 	// Set DataGetDate
-	re := regexp.MustCompile("データ取得日：(.*)$")
-	dgd := re.ReplaceAllString(
-		strings.Trim(doc.Find("#container > div.l_header > header > div.m_playdate > p").Text(), " \n"),
-		"$1",
-	)
-	loc, _ := time.LoadLocation("Asia/Tokyo")
-	db.DataGetDate, err = time.ParseInLocation("2006年01月02日 15時04分", dgd, loc)
+	db.DataGetDate, err = parseDataGetDate(strings.Trim(doc.Find("#container > div.l_header > header > div.m_playdate > p").Text(), " \n"))
 	if err != nil {
 		return db, err
 	}
@@ -68,10 +62,10 @@ func FetchDigitalBinder(ownerID string, seriesID int) (DigitalBinder, error) {
 
 // parseAndSetCard creats function that
 // parses card info from binder.
-func parseAndSetCard(db *DigitalBinder) func (i int, s *goquery.Selection)  {
-	return func (i int, s *goquery.Selection) {
-		card := Card {
-			OwnerID: db.OwnerID,
+func parseAndSetCard(db *DigitalBinder) func(i int, s *goquery.Selection) {
+	return func(i int, s *goquery.Selection) {
+		card := Card{
+			OwnerID:  db.OwnerID,
 			SeriesID: db.SeriesID,
 		}
 
@@ -81,14 +75,12 @@ func parseAndSetCard(db *DigitalBinder) func (i int, s *goquery.Selection)  {
 
 		s.Find("a > div.m_dress_card_img > img").Children().First()
 
-
 		// Set owned
 		if s.Find("a > div.m_dress_card_img > img.is_medal").Length() == 0 {
 			card.Owned = false
 		} else {
 			card.Owned = true
 		}
-
 
 		db.Cards = append(db.Cards, card)
 	}

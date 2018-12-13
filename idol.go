@@ -3,7 +3,6 @@ package dcdkatsu
 import (
 	"fmt"
 	"net/http"
-	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -75,16 +74,9 @@ func FetchIdol(id string) (Idol, error) {
 	idol.AvatarURL = fmt.Sprintf("http://mypage.aikatsu.com%s", au)
 
 	// Set DataGetDate
-	re := regexp.MustCompile("データ取得日：(.*)$")
-	dgd := re.ReplaceAllString(
-		strings.Trim(doc.Find("#container > div.l_header > header > div.m_playdate > p").Text(), " \n"),
-		"$1",
-	)
-
-	loc, _ := time.LoadLocation("Asia/Tokyo")
-	idol.DataGetDate, err = time.ParseInLocation("2006年01月02日 15時04分", dgd, loc)
+	idol.DataGetDate, err = parseDataGetDate(strings.Trim(doc.Find("#container > div.l_header > header > div.m_playdate > p").Text(), " \n"))
 	if err != nil {
-		return db, err
+		return idol, err
 	}
 	// "2016年01月02日 03時04分"
 
