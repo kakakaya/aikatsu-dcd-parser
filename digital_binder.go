@@ -58,9 +58,9 @@ func FetchDigitalBinder(ownerID string, seriesID int) (DigitalBinder, error) {
 		"$1",
 	)
 	loc, _ := time.LoadLocation("Asia/Tokyo")
-	db.DataGetDate, err = time.ParseInLocation("2006年01月02日 03時04分", dgd, loc)
+	db.DataGetDate, err = time.ParseInLocation("2006年01月02日 15時04分", dgd, loc)
 	if err != nil {
-		fmt.Println(err)
+		return db, err
 	}
 
 	return db, nil

@@ -82,9 +82,9 @@ func FetchIdol(id string) (Idol, error) {
 	)
 
 	loc, _ := time.LoadLocation("Asia/Tokyo")
-	idol.DataGetDate, err = time.ParseInLocation("2006年01月02日 03時04分", dgd, loc)
+	idol.DataGetDate, err = time.ParseInLocation("2006年01月02日 15時04分", dgd, loc)
 	if err != nil {
-		fmt.Println(err)
+		return db, err
 	}
 	// "2016年01月02日 03時04分"
 
