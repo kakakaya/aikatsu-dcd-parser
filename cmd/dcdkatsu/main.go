@@ -43,6 +43,13 @@ func main() {
 			Action: binder,
 		},
 		{
+			Name:     "card",
+			Aliases:  []string{"c"},
+			Category: loginNotRequiredCategoryLabel,
+			Usage:    "Fetch Card data and print as JSON",
+			Action: card,
+		},
+		{
 			Name: "friends",
 			// Aliases:  []string{""},
 			Category: loginRequiredCategoryLabel,
