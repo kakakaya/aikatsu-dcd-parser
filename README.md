@@ -15,7 +15,7 @@ Fetch and parse Aikatsu! DCD mypage data.
 ## Card
 `dcdkatsu card <Card URL>`
 
-# Documentatino
+# Documentation
 See GoDoc.
 
 [![GoDoc](https://godoc.org/github.com/kakakaya/aikatsu-dcd-parser?status.png)](https://godoc.org/github.com/kakakaya/aikatsu-dcd-parser)
