@@ -23,7 +23,7 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "dcdkatsu"
 	app.Usage = "scrape from mypage.aikatsu.com"
-	app.Version = "0.1.0"
+	app.Version = "0.2.0+20191213214047"
 
 	//app.Action =
 
