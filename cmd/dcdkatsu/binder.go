@@ -19,7 +19,7 @@ func binder(c *cli.Context) error {
 		return err
 	}
 
-	db, err := dcdkatsu.FetchDigitalBinder(ownerID, seriesID)
+	db, err := dcd.FetchDigitalBinder(ownerID, seriesID)
 	if err != nil {
 		return err
 	}

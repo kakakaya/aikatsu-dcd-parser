@@ -4,13 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/kakakaya/aikatsu-dcd-parser"
+	dcd "github.com/kakakaya/aikatsu-dcd-parser"
 	"github.com/urfave/cli"
 )
 
 func user(c *cli.Context) error {
 	var idolID = c.Args().Get(0)
-	idol, err := dcdkatsu.FetchIdol(idolID)
+	idol, err := dcd.FetchIdol(idolID)
 	if err != nil {
 		return err
 	}
