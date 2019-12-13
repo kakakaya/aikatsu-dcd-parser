@@ -1,4 +1,4 @@
-package dcdkatsu
+package dcd
 
 import (
 	"fmt"
