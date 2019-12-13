@@ -11,7 +11,7 @@ import (
 
 func binder(c *cli.Context) error {
 	if c.NArg() != 2 {
-		return fmt.Errorf("Digital_binder requires exactly two arguments: <OwnerID, SeriesID>, but got %d.\n", c.NArg())
+		return fmt.Errorf("Digital_binder requires exactly two arguments: <OwnerID, SeriesID>, but got %d", c.NArg())
 	}
 	var ownerID = c.Args().Get(0)
 	var seriesID, err = strconv.Atoi(c.Args().Get(1))
