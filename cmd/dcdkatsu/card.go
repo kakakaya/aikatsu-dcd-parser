@@ -16,7 +16,7 @@ func card(c *cli.Context) error {
 		return err
 	}
 
-	card, err := dcdkatsu.FetchCard(cardURL)
+	card, err := dcd.FetchCard(cardURL)
 	if err != nil {
 		return err
 	}
